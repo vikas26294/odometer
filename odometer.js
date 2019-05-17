@@ -144,6 +144,9 @@
       if ((_base = this.options).duration == null) {
         _base.duration = DURATION;
       }
+      if (this.options.leadingZero == null) {
+        _base.leadingZero = true;
+      }
       this.MAX_VALUES = ((this.options.duration / MS_PER_FRAME) / FRAMES_PER_VALUE) | 0;
       this.resetFormat();
       this.value = this.cleanValue((_ref1 = this.options.value) != null ? _ref1 : '');
@@ -564,6 +567,9 @@
         }
         for (j = _m = 0, _len2 = frames.length; _m < _len2; j = ++_m) {
           frame = frames[j];
+          if (!this.options.leadingZero && i === (_len1 - 1) && j === 0 && frame === 0) {
+            frame = '<br/>';
+          }
           numEl = document.createElement('div');
           numEl.className = 'odometer-value';
           numEl.innerHTML = frame;
